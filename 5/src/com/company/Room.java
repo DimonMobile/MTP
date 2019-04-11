@@ -7,15 +7,24 @@ import java.util.LinkedList;
 public class Room {
 
     private LinkedList<Electrical> devices;
+
+    public double getMaxPower() {
+        return maxPower;
+    }
+
     private double maxPower;
 
     public Room(double maxPower){
         this.maxPower = maxPower;
         devices = new LinkedList<>();
-        devices.add(new Teapod());
-        devices.add(new TV());
-        devices.add(new TV());
-        devices.add(new Fridge());
+     //   devices.add(new Teapod());
+     //   devices.add(new TV());
+     //   devices.add(new TV());
+     //   devices.add(new Fridge());
+    }
+
+    LinkedList<Electrical> getDevices() {
+        return devices;
     }
 
     void turnOnAll() throws UnexpectedException{

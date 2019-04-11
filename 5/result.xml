@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Room maxPower="100.0">
+    <Teapod amperage="5.0" voltage="60.0"/>
+    <TV amperage="2.0" voltage="80.0"/>
+    <TV amperage="2.0" voltage="80.0"/>
+    <Fridge amperage="1.0" voltage="220.0"/>
+</Room>
