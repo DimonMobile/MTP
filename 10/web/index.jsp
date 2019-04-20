@@ -19,5 +19,13 @@
   </head>
   <body>
   <button onclick="retrieveTime()">Current time and other data</button>
+  <fieldset>
+    <legend>Registration</legend>
+    <form method="POST" action="register">
+      <input name="email" type="text" placeholder="email"/>
+      <input name="password" type="password" placeholder="password"/>
+      <input type="submit" value="Register"/>
+    </form>
+  </fieldset>
   </body>
 </html>
