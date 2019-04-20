@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="io.reactivex.rxjava2:rxjava:2.2.8" level="project" />
+    <orderEntry type="library" name="com.adobe.testing:s3mock-testng:2.1.3" level="project" />
   </component>
 </module>

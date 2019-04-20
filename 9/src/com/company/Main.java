@@ -9,6 +9,8 @@ import java.net.*;
 
 public class Main {
 
+    private static int updates = 0;
+
     private static void partOne(int index) {
         BehaviorSubject<Integer> a = BehaviorSubject.create();
         BehaviorSubject<Integer> b = BehaviorSubject.create();
@@ -52,13 +54,18 @@ public class Main {
             }
         } else if (index == 2) {
             try {
-                ServerSocket listener = new ServerSocket(7777);
+                ServerSocket listener = new ServerSocket(8000);
                 System.out.println("Listening...");
-                Socket socket = listener.accept();
+                for(;;) {
+                    Socket socket = listener.accept();
 
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
+                    String response = "Updates: " + ++updates;
+
+                    out.println("HTTP/1.1 200 OK\r\nContent-type: text/html\r\nContent-length: " + response.length() +"\r\n\r\n" + response);
+                }
 
             } catch(IOException e) {
                 System.out.println(e.getStackTrace());
