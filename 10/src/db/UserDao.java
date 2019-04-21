@@ -1,8 +1,11 @@
 package db;
 
+import javafx.util.Pair;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class UserDao {
     public UserDao() throws ClassNotFoundException, SQLException {
@@ -16,7 +19,7 @@ public class UserDao {
             }
         }
         if (!exists) {
-            statement.execute("CREATE TABLE users(email VARCHAR(50), password VARCHAR(256) NOT NULL, CONSTRAINT users_pk PRIMARY KEY users(email))");
+            statement.execute("CREATE TABLE users(email VARCHAR(50), password VARCHAR(256) NOT NULL, last_login TIMESTAMP NOT NULL, login_number INTEGER NOT NULL DEFAULT 0, CONSTRAINT users_pk PRIMARY KEY users(email))");
         }
     }
 
@@ -42,9 +45,34 @@ public class UserDao {
         if (resultSet.next()) {
             String retrievedPassword = resultSet.getString(1);
             if (retrievedPassword.equals(password)) {
+                statement.execute("UPDATE users SET login_number = login_number + 1 WHERE email='" + email + "'");
                 return true;
             }
         }
         return false;
+    }
+
+    public Date getLoginTimestamp(String email) throws SQLException, ClassNotFoundException {
+        Statement statement = DatabaseConnection.getStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT last_login FROM users WHERE email='" + email + "'");
+        Date result;
+        if (resultSet.next()) {
+            result = resultSet.getDate(1);
+        } else {
+            throw new SQLException();
+        }
+        return result;
+    }
+
+    public int getLoginNumber(String email) throws SQLException, ClassNotFoundException {
+        Statement statement = DatabaseConnection.getStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT login_number FROM users WHERE email='" + email + "'");
+        int result;
+        if (resultSet.next()) {
+            result = resultSet.getInt(1);
+        } else {
+            throw new SQLException();
+        }
+        return result;
     }
 }

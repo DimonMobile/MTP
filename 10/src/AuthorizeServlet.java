@@ -2,6 +2,7 @@ import db.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,11 @@ public class AuthorizeServlet extends HttpServlet {
             UserDao userDao = new UserDao();
             if (userDao.checkFor(email, password)) {
                 writer.println("Hello, " + email);
+                writer.println("Set to cookies");
+                writer.println("Last login: " + userDao.getLoginTimestamp(email));
+                writer.println("Login number: " + userDao.getLoginNumber(email));
+                resp.addCookie(new Cookie("last_login", userDao.getLoginTimestamp(email).toString()));
+                resp.addCookie(new Cookie("login_number", Integer.toString(userDao.getLoginNumber(email)) ));
             }else {
                 writer.println("Access denied");
             }
