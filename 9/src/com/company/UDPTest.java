@@ -20,21 +20,21 @@ public class UDPTest {
         Thread.sleep(1000);
     }
 
-    @Test(timeOut = 1000)
+    @Test(timeOut = 500)
     public void test1() throws IOException {
         String testMsg = "Test";
         String echo = client.sendEcho(testMsg);
         assertEquals(echo, testMsg);
     }
 
-    @Test(timeOut = 1000)
+    @Test(timeOut = 500)
     public void test2() throws IOException {
         String testMsg = " ";
         String echo = client.sendEcho(testMsg);
         assertEquals(echo, testMsg);
     }
 
-    @Test(timeOut = 1000)
+    @Test(timeOut = 500)
     public void test3() throws IOException {
         String testMsg = "ASDSADASDASASDSADASDASASDSADASDASASSDSADASDASASDSADASDASASDSADASDASASDSADASDASSDSADASDASASSDSADASDASASDSADASDASASDSADASDASASDSADASDAS";
         String echo = client.sendEcho(testMsg);
