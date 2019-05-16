@@ -1,0 +1,26 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>PDA Text Field</short-name>
+
+    <tag>
+        <name>pdaLabeledTextField</name>
+        <tag-class>CustomTags.pdaLabeledTextField</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>value</name>
+        </attribute>
+        <attribute>
+            <name>name</name>
+        </attribute>
+        <attribute>
+            <name>label</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>pdasubmit</name>
+        <tag-class>CustomTags.pdasubmit</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+</taglib>
