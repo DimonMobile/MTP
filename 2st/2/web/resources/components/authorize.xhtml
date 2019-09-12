@@ -20,7 +20,7 @@
             <h:inputText value="#{cc.attrs.username}" required="true"/><br/><br/>
             <h:outputText value="Пароль"/><br/>
             <h:inputText value="#{cc.attrs.password}" required="true"/><br/><br/>
-            <h:button value="Вход"/>
+            <h:commandButton value="Вход" action="#{CardController.doPayment}"/>
         </h:form>
     </composite:implementation>
 </h:body>
