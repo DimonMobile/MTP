@@ -1,5 +1,7 @@
 package beans;
 
+import DAO.UserDAO;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.util.Date;
@@ -54,7 +56,7 @@ public class CardController {
     private int cvc;
     private int sum;
 
-    public void doPayment() {
-
+    public void doPayment() throws Exception {
+        UserDAO userDao = new UserDAO();
     }
 }
