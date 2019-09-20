@@ -11,16 +11,15 @@
 </h:head>
 <h:body>
     <composite:interface>
-        <composite:attribute name="username" required="false"/>
-        <composite:attribute name="password" required="false"/>
+        <composite:attribute name="userItem" required="true"/>
     </composite:interface>
     <composite:implementation>
         <h:form>
             <h:outputText value="Имя пользователя"/><br/>
-            <h:inputText value="#{cc.attrs.username}" required="true"/><br/><br/>
+            <h:inputText title="name" id="name" value="#{cc.attrs.userItem.name}" required="true"/><br/><br/>
             <h:outputText value="Пароль"/><br/>
-            <h:inputText value="#{cc.attrs.password}" required="true"/><br/><br/>
-            <h:button value="Вход"/>
+            <h:inputSecret title="password" id="password" value="#{cc.attrs.userItem.password}" required="true"/><br/><br/>
+            <h:commandButton value="Вход" action="#{UserController.checkUserExistence(cc.attrs.userItem)}"/>
         </h:form>
     </composite:implementation>
 </h:body>

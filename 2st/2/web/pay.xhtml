@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:outputLabel value="Please authorize first " rendered="#{empty session.getAttribute('userId')}">
+        <h:link outcome="home" value="here"/>
+    </h:outputLabel>
+    <h:form rendered="#{not empty session.getAttribute('userId')}">
+        <h:outputLabel value="Номер карты"/><br/>
+        <h:inputText value="#{CardController.card.num}"/><br/><br/>
+        <h:outputLabel value="Срок действия"/><br/>
+        <h:inputText value="#{CardController.card.until}">
+            <f:convertDateTime pattern="MM/yy"/>
+        </h:inputText><br/><br/>
+        <h:outputLabel value="CVC"/><br/>
+        <h:inputText value="#{CardController.card.cvc}"/><br/><br/>
+        <h:outputLabel value="Сумма"/><br/>
+        <h:inputText value="#{CardController.card.sum}"/><br/><br/>
+        <h:commandButton value="Снять бабки!" action="#{CardController.doPayment}"/>
+    </h:form>
+    <h:messages/>
+</f:view>
+</html>
