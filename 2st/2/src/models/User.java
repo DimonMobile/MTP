@@ -4,6 +4,16 @@ public class User {
     private int id;
     private String name;
     private String password;
+    private Card card = new Card();
+
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
     public int getId() {
         return id;

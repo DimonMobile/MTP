@@ -1,15 +1,30 @@
 package models;
 
-public class Card {
-    private int id;
-    private int sum;
+import java.util.Date;
 
-    public int getId() {
-        return id;
+public class Card {
+    public String getNum() {
+        return num;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNum(String num) {
+        this.num = num;
+    }
+
+    public Date getUntil() {
+        return until;
+    }
+
+    public void setUntil(Date until) {
+        this.until = until;
+    }
+
+    public int getCvc() {
+        return cvc;
+    }
+
+    public void setCvc(int cvc) {
+        this.cvc = cvc;
     }
 
     public int getSum() {
@@ -20,13 +35,8 @@ public class Card {
         this.sum = sum;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    private User owner;
+    private String num;
+    private Date until;
+    private int cvc;
+    private int sum;
 }

@@ -6,6 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:outputLabel value="Please authorize first " rendered="#{empty session.getAttribute('userId')}">
+        <h:link outcome="home" value="here"/>
+    </h:outputLabel>
+    <h:form rendered="#{not empty session.getAttribute('userId')}">
+        <h:outputLabel value="Номер карты"/><br/>
+        <h:inputText value="#{CardController.card.num}"/><br/><br/>
+        <h:outputLabel value="Срок действия"/><br/>
+        <h:inputText value="#{CardController.card.until}">
+            <f:convertDateTime pattern="MM/yy"/>
+        </h:inputText><br/><br/>
+        <h:outputLabel value="CVC"/><br/>
+        <h:inputText value="#{CardController.card.cvc}"/><br/><br/>
+        <h:outputLabel value="Сумма"/><br/>
+        <h:inputText value="#{CardController.card.sum}"/><br/><br/>
+        <h:commandButton value="Снять бабки!" action="#{CardController.doPayment}"/>
+    </h:form>
+    <h:messages/>
 </f:view>
 </html>

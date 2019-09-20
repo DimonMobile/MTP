@@ -1,68 +1,47 @@
 package beans;
 
 import DAO.UserDAO;
+import models.Card;
+import models.User;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.io.FileWriter;
 import java.util.Date;
+import java.util.Map;
 
 @ManagedBean(name = "CardController")
 @RequestScoped
 public class CardController {
-    private int cardId;
+    private Card card = new Card();
 
-    public int getCardId() {
-        return cardId;
+    public Card getCard() {
+        return card;
     }
 
-    public void setCardId(int cardId) {
-        this.cardId = cardId;
+    public void setCard(Card card) {
+        this.card = card;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public int getCvc() {
-        return cvc;
-    }
-
-    public void setCvc(int cvc) {
-        this.cvc = cvc;
-    }
-
-    public int getSum() {
-        return sum;
-    }
-
-    public void setSum(int sum) {
-        this.sum = sum;
-    }
-
-    private String name;
-    private Date dueDate;
-    private int cvc;
-    private int sum;
 
     public String doPayment() throws Exception {
-//        System.out.println("/home/ITRANSITION.CORP/d.plotnikov/Documents/Itransition/kek.txt");
-//        FileWriter fw = new FileWriter("/home/ITRANSITION.CORP/d.plotnikov/Documents/Itransition/kek.txt");
-//        fw.write("kaban");
-//        fw.close();
-//        UserDAO userDao = new UserDAO();
-        return "kaban/";
+        System.out.println("Do payment clicked");
+        UserDAO userDao = new UserDAO();
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        Map<String, Object> sessionMap = ctx.getExternalContext().getSessionMap();
+        User user = userDao.getUser((int)sessionMap.get("userId"));
+        System.out.println(user.getName());
+        Card userCard = user.getCard();
+
+        if(userCard.getSum() < card.getSum()) {
+            ctx.addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Столько нет((((", "Бабок не хватает"));
+        } else {
+            userCard.setSum(userCard.getSum() - card.getSum());
+            ctx.addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO, "Успешно списано " + card.getSum() + ", осталось " + userCard.getSum(), ""));
+        }
+
+        userDao.updateUser(user);
+        return "payed";
     }
 }

@@ -18,7 +18,7 @@
             <h:outputText value="Имя пользователя"/><br/>
             <h:inputText title="name" id="name" value="#{cc.attrs.userItem.name}" required="true"/><br/><br/>
             <h:outputText value="Пароль"/><br/>
-            <h:inputText title="password" id="password" value="#{cc.attrs.userItem.password}" required="true"/><br/><br/>
+            <h:inputSecret title="password" id="password" value="#{cc.attrs.userItem.password}" required="true"/><br/><br/>
             <h:commandButton value="Вход" action="#{UserController.checkUserExistence(cc.attrs.userItem)}"/>
         </h:form>
     </composite:implementation>
