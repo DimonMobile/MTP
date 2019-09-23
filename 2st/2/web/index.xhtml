@@ -6,8 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:co="http://xmlns.jcp.org/jsf/composite/components"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <co:authorize userItem="#{UserController.user}"/>
-      <h:messages/>
-   </f:view>
+   <ui:composition template="template.xhtml">
+      <ui:define name="content">
+         <co:authorize userItem="#{UserController.user}"/>
+         <h:messages/>
+      </ui:define>
+   </ui:composition>
 </html>

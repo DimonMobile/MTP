@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 public class UserDAO {
     private Connection connection;
-    private String databaseAddress = "192.168.43.111";
+    private String databaseAddress = "192.168.100.47";
 
     public UserDAO() throws Exception {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
