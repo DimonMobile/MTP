@@ -13,10 +13,11 @@ import java.sql.Statement;
 
 public class UserDAO {
     private Connection connection;
+    private String databaseAddress = "192.168.43.111";
 
     public UserDAO() throws Exception {
         Class.forName("com.mysql.jdbc.Driver").newInstance();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/Univer_java_lab2?user=root&password=12345678");
+        connection = DriverManager.getConnection("jdbc:mysql://" + databaseAddress + "/Univer_java_lab2?user=root&password=12345678");
     }
 
     public User getUser(int id) throws Exception {
