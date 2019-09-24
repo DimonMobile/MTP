@@ -13,7 +13,10 @@
 <body>
     <div id="header">
         <ui:insert name="header">
-            <h2>Бабкосниматель</h2>
+            <p>
+            <h:graphicImage width="32" height="32" value='#{resource["picture.png"]}'/>
+            <font size="24">Бабкосниматель</font>
+            </p>
             <h:link outcome="home">Домой</h:link>
             <h:link style="padding-left: 15px" outcome="payed">У меня есть лишние бабки</h:link>
             <hr/>
