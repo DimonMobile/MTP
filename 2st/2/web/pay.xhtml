@@ -25,7 +25,9 @@
                 <f:validateLongRange minimum="0" maximum="999"/>
             </h:inputText><br/><br/>
             <h:outputLabel value="Сумма"/><br/>
-            <h:inputText value="#{CardController.card.sum}"/><br/><br/>
+            <h:inputText value="#{CardController.card.sum}">
+                <f:converter converterId="CurrencyConverter"/>
+            </h:inputText><br/><br/>
             <h:commandButton value="Снять бабки!" action="#{CardController.doPayment}"/>
         </h:form>
         <h:messages/>
